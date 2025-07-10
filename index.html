@@ -4,25 +4,118 @@
   <meta charset="UTF-8">
   <title>3D Логотип</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    * {
       margin: 0;
-      background-color: black;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
+      overflow: hidden;
     }
+
     video {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .logo {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 200px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .overlay-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 180px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.4) 60%,
+        transparent 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .overlay-text {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: #ffffff;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0.95;
+      text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.15);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    @media (max-width: 768px) {
+      .overlay-text {
+        font-size: 22px;
+        letter-spacing: 6px;
+      }
+
+      .overlay-container {
+        height: 140px;
+      }
+
+      .logo {
+        height: 60px;
+        top: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .overlay-text {
+        font-size: 18px;
+        letter-spacing: 4px;
+      }
+
+      .overlay-container {
+        height: 120px;
+      }
+
+      .logo {
+        height: 50px;
+        top: 16px;
+      }
     }
   </style>
 </head>
 <body>
+  <img src="logo.png" alt="Логотип" class="logo">
+
   <video autoplay muted loop playsinline preload="auto">
     <source src="video.mp4" type="video/mp4">
-    <source src="video.webm" type="video/webm">
     Ваш браузер не поддерживает видео.
   </video>
+
+  <div class="overlay-container">
+    <div class="overlay-text">𝒃𝒚 𝒒𝒂𝒓𝒂𝒂.𝒌𝒛</div>
+  </div>
 </body>
 </html>
